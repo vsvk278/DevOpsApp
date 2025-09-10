@@ -1,0 +1,3160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart DevOps Interview Prep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Login Page -->
+    <div id="login-page" class="min-h-screen flex items-center justify-center px-4">
+        <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">🤖 Smart DevOps Interview Prep</h1>
+                <p class="text-gray-600">Intelligent personalized learning for DevOps professionals</p>
+            </div>
+            
+            <form id="login-form" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" id="login-email" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                           placeholder="your.email@company.com" value="demo@devops.com">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="login-password" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                           placeholder="Enter your password" value="demo123">
+                </div>
+                
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-4 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-medium">
+                    🚀 Enter AI Learning Platform
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">Demo credentials are pre-filled - just click Enter!</p>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="text-center">
+                    <p class="text-sm text-gray-600 mb-4">New to the platform?</p>
+                    <button onclick="showRegister()" class="text-primary hover:text-secondary font-medium">
+                        Create Account →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="register-page" class="min-h-screen flex items-center justify-center px-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">🎯 Join Smart Platform</h1>
+                <p class="text-gray-600">Start your intelligent DevOps journey</p>
+            </div>
+            
+            <form id="register-form" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="register-name" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                           placeholder="John Doe">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" id="register-email" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                           placeholder="your.email@company.com">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="register-password" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                           placeholder="Create a strong password">
+                </div>
+                
+                <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-teal-600 text-white py-3 px-4 rounded-lg hover:from-green-700 hover:to-teal-700 transition-all duration-300 font-medium">
+                    🚀 Create AI Account
+                </button>
+            </form>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="text-center">
+                    <button onclick="showLogin()" class="text-primary hover:text-secondary font-medium">
+                        ← Back to Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="container mx-auto px-4 py-8 hidden">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">🤖 Smart DevOps Interview Prep</h1>
+                <p class="text-lg text-gray-600">Personalized intelligent learning for 50+ DevOps tools</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-gray-600">Welcome, <span id="user-name" class="font-semibold"></span>!</span>
+                <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                    🚪 Logout
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex flex-wrap gap-4 justify-center">
+                <button onclick="showSection('ai-questions')" class="nav-btn bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300">
+                    🤖 Smart Questions
+                </button>
+                <button onclick="showSection('ai-coding')" class="nav-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors">
+                    💻 Smart Coding
+                </button>
+                <button onclick="showSection('ai-interview')" class="nav-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors">
+                    🎤 Smart Mock Interview
+                </button>
+                <button onclick="showSection('favorites')" class="nav-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors">
+                    ⭐ Favorites
+                </button>
+                <button onclick="showSection('quiz')" class="nav-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors">
+                    🎯 Quiz Mode
+                </button>
+
+            </div>
+        </nav>
+
+        <!-- AI Questions Section -->
+        <div id="ai-questions-section" class="section">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">🤖 Smart Question Generator</h2>
+                <p class="text-gray-600 mb-6">Generate personalized DevOps interview questions using intelligent algorithms for 50+ tools and technologies</p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
+                        <select id="ai-experience" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="junior">Junior (0-2 years)</option>
+                            <option value="mid">Mid-level (2-5 years)</option>
+                            <option value="senior">Senior (5+ years)</option>
+                            <option value="architect">Architect/Lead (8+ years)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">DevOps Category</label>
+                        <select id="ai-category" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="general">General DevOps</option>
+                            <option value="cloud">Cloud Platforms</option>
+                            <option value="containers">Containerization</option>
+                            <option value="cicd">CI/CD Tools</option>
+                            <option value="monitoring">Monitoring & Observability</option>
+                            <option value="security">Security & Compliance</option>
+                            <option value="infrastructure">Infrastructure as Code</option>
+                            <option value="configuration">Configuration Management</option>
+                            <option value="orchestration">Orchestration</option>
+                            <option value="databases">Databases</option>
+                            <option value="networking">Networking</option>
+                            <option value="storage">Storage Solutions</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Specific Tool</label>
+                        <select id="ai-tool" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="">Auto-select based on category</option>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Question Type</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="question-type" value="scenario" checked class="mr-2">
+                                <span>Scenario-based Problems</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="question-type" value="technical" class="mr-2">
+                                <span>Technical Deep-dive</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="question-type" value="troubleshooting" class="mr-2">
+                                <span>Troubleshooting & Debugging</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="question-type" value="design" class="mr-2">
+                                <span>System Design & Architecture</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Questions</label>
+                        <select id="ai-count" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="5">5 Questions</option>
+                            <option value="10">10 Questions</option>
+                            <option value="15">15 Questions</option>
+                            <option value="20">20 Questions</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="generateAIQuestions()" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-medium">
+                        🚀 Generate AI Questions
+                    </button>
+                    <button onclick="randomizeExisting()" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors">
+                        🎲 Random Questions
+                    </button>
+                </div>
+            </div>
+            
+            <div id="ai-questions-container" class="space-y-4">
+                <!-- AI generated questions will appear here -->
+            </div>
+        </div>
+
+        <!-- AI Coding Section -->
+        <div id="ai-coding-section" class="section hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">💻 AI Coding Assessment Generator</h2>
+                <p class="text-gray-600 mb-6">Generate personalized coding challenges for DevOps tools and automation</p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Skill Level</label>
+                        <select id="coding-level" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Technology</label>
+                        <select id="coding-tech" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="bash">Bash Scripting</option>
+                            <option value="python">Python Automation</option>
+                            <option value="yaml">YAML/Docker Compose</option>
+                            <option value="terraform">Terraform</option>
+                            <option value="kubernetes">Kubernetes Manifests</option>
+                            <option value="ansible">Ansible Playbooks</option>
+                            <option value="jenkins">Jenkins Pipeline</option>
+                            <option value="github-actions">GitHub Actions</option>
+                            <option value="gitlab-ci">GitLab CI</option>
+                            <option value="cloudformation">CloudFormation</option>
+                            <option value="helm">Helm Charts</option>
+                            <option value="powershell">PowerShell</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Assessment Type</label>
+                        <select id="coding-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="automation">Automation Scripts</option>
+                            <option value="infrastructure">Infrastructure Code</option>
+                            <option value="deployment">Deployment Pipelines</option>
+                            <option value="monitoring">Monitoring Setup</option>
+                            <option value="security">Security Implementation</option>
+                            <option value="troubleshooting">Troubleshooting Tasks</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="generateAICoding()" class="bg-gradient-to-r from-green-600 to-teal-600 text-white px-8 py-3 rounded-lg hover:from-green-700 hover:to-teal-700 transition-all duration-300 font-medium">
+                        🚀 Generate AI Coding Challenge
+                    </button>
+                    <button onclick="generateMultipleCoding()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        📝 Generate 5 Challenges
+                    </button>
+                </div>
+            </div>
+            
+            <div id="ai-coding-container" class="space-y-6">
+                <!-- AI generated coding assessments will appear here -->
+            </div>
+        </div>
+
+        <!-- AI Mock Interview Section -->
+        <div id="ai-interview-section" class="section hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">🎤 AI Mock Interview</h2>
+                <p class="text-gray-600 mb-6">Experience realistic DevOps interviews with AI-powered questions and feedback</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Interview Type</label>
+                        <select id="interview-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="general">General DevOps Interview</option>
+                            <option value="cloud-engineer">Cloud Engineer</option>
+                            <option value="sre">Site Reliability Engineer</option>
+                            <option value="platform-engineer">Platform Engineer</option>
+                            <option value="devops-architect">DevOps Architect</option>
+                            <option value="security-engineer">DevSecOps Engineer</option>
+                            <option value="automation-engineer">Automation Engineer</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Company Size</label>
+                        <select id="company-size" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="startup">Startup (1-50 employees)</option>
+                            <option value="medium">Medium (50-500 employees)</option>
+                            <option value="large">Large (500-5000 employees)</option>
+                            <option value="enterprise">Enterprise (5000+ employees)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Interview Duration</label>
+                        <select id="interview-duration" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary">
+                            <option value="30">30 minutes (Quick Round)</option>
+                            <option value="45">45 minutes (Standard)</option>
+                            <option value="60">60 minutes (Comprehensive)</option>
+                            <option value="90">90 minutes (Full Technical)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Focus Areas</label>
+                        <div class="space-y-2 max-h-32 overflow-y-auto">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="focus-areas" value="cloud" class="mr-2">
+                                <span class="text-sm">Cloud Platforms</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="focus-areas" value="containers" class="mr-2">
+                                <span class="text-sm">Containers & Orchestration</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="focus-areas" value="cicd" class="mr-2">
+                                <span class="text-sm">CI/CD Pipelines</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="focus-areas" value="monitoring" class="mr-2">
+                                <span class="text-sm">Monitoring & Observability</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="focus-areas" value="security" class="mr-2">
+                                <span class="text-sm">Security & Compliance</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="focus-areas" value="infrastructure" class="mr-2">
+                                <span class="text-sm">Infrastructure as Code</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="startAIMockInterview()" class="bg-gradient-to-r from-red-600 to-pink-600 text-white px-8 py-3 rounded-lg hover:from-red-700 hover:to-pink-700 transition-all duration-300 font-medium">
+                        🎤 Start AI Mock Interview
+                    </button>
+                    <button onclick="generateInterviewQuestions()" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                        📋 Preview Questions
+                    </button>
+                </div>
+            </div>
+            
+            <div id="ai-interview-container">
+                <!-- AI mock interview will appear here -->
+            </div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div id="favorites-section" class="section hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">⭐ Your Favorites</h2>
+                <p class="text-gray-600">AI-generated content you've marked as favorites</p>
+            </div>
+            <div id="favorites-container" class="space-y-4">
+                <!-- Favorite content will be populated here -->
+            </div>
+        </div>
+
+        <!-- Quiz Mode Section -->
+        <div id="quiz-section" class="section hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 AI-Powered Quiz Mode</h2>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <select id="quiz-category" class="px-4 py-3 border border-gray-300 rounded-lg">
+                        <option value="">All Categories</option>
+                        <option value="cloud">Cloud Platforms</option>
+                        <option value="containers">Containerization</option>
+                        <option value="cicd">CI/CD Tools</option>
+                        <option value="monitoring">Monitoring & Observability</option>
+                        <option value="security">Security & Compliance</option>
+                        <option value="infrastructure">Infrastructure as Code</option>
+                        <option value="configuration">Configuration Management</option>
+                        <option value="orchestration">Orchestration</option>
+                        <option value="databases">Databases</option>
+                        <option value="networking">Networking</option>
+                        <option value="storage">Storage Solutions</option>
+                        <option value="version-control">Version Control</option>
+                        <option value="testing">Testing & QA</option>
+                        <option value="performance">Performance Optimization</option>
+                        <option value="logging">Logging & Analytics</option>
+                    </select>
+                    <input type="number" id="quiz-count" placeholder="Number of questions" min="1" max="50" value="10" 
+                           class="px-4 py-3 border border-gray-300 rounded-lg">
+                    <button onclick="startSmartQuiz()" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition-all duration-300">
+                        🚀 Start Smart Quiz
+                    </button>
+                </div>
+            </div>
+            <div id="quiz-container">
+                <!-- Quiz will be populated here -->
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let favorites = [];
+        let currentQuiz = null;
+        let quizIndex = 0;
+        let quizScore = 0;
+        let aiGeneratedContent = {
+            questions: [],
+            coding: [],
+            interviews: []
+        };
+        let currentInterview = null;
+        let interviewIndex = 0;
+        let interviewTimer = null;
+        let questionTimer = null;
+
+        // Comprehensive DevOps tools database
+        const devopsTools = {
+            cloud: {
+                name: "Cloud Platforms",
+                tools: ["AWS", "Azure", "Google Cloud", "DigitalOcean", "Linode", "Vultr", "Oracle Cloud", "IBM Cloud", "Alibaba Cloud", "Heroku"]
+            },
+            containers: {
+                name: "Containerization",
+                tools: ["Docker", "Kubernetes", "OpenShift", "Rancher", "Podman", "containerd", "CRI-O", "LXC", "Docker Swarm", "Nomad"]
+            },
+            cicd: {
+                name: "CI/CD Tools",
+                tools: ["Jenkins", "GitLab CI", "GitHub Actions", "Azure DevOps", "CircleCI", "Travis CI", "Bamboo", "TeamCity", "Drone", "Buildkite", "Spinnaker", "Argo CD"]
+            },
+            monitoring: {
+                name: "Monitoring & Observability",
+                tools: ["Prometheus", "Grafana", "ELK Stack", "Datadog", "New Relic", "Splunk", "Nagios", "Zabbix", "AppDynamics", "Dynatrace", "Jaeger", "Zipkin"]
+            },
+            security: {
+                name: "Security & Compliance",
+                tools: ["Vault", "SAST/DAST", "Snyk", "Aqua Security", "Twistlock", "Falco", "Open Policy Agent", "Clair", "Anchore", "SonarQube", "Checkmarx", "Veracode"]
+            },
+            infrastructure: {
+                name: "Infrastructure as Code",
+                tools: ["Terraform", "CloudFormation", "Pulumi", "ARM Templates", "CDK", "Bicep", "Crossplane", "Ansible", "Chef", "Puppet", "SaltStack", "Vagrant"]
+            },
+            configuration: {
+                name: "Configuration Management",
+                tools: ["Ansible", "Chef", "Puppet", "SaltStack", "Consul", "etcd", "Zookeeper", "Helm", "Kustomize", "Jsonnet"]
+            },
+            orchestration: {
+                name: "Orchestration",
+                tools: ["Kubernetes", "Docker Swarm", "Apache Mesos", "Nomad", "OpenShift", "Rancher", "ECS", "AKS", "GKE", "EKS"]
+            },
+            databases: {
+                name: "Databases",
+                tools: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch", "Cassandra", "DynamoDB", "RDS", "CosmosDB", "BigQuery"]
+            },
+            networking: {
+                name: "Networking",
+                tools: ["Istio", "Linkerd", "Envoy", "HAProxy", "NGINX", "Traefik", "Consul Connect", "Calico", "Flannel", "Weave Net"]
+            },
+            storage: {
+                name: "Storage Solutions",
+                tools: ["Ceph", "GlusterFS", "MinIO", "S3", "Azure Blob", "Google Cloud Storage", "Longhorn", "Rook", "OpenEBS", "Portworx"]
+            },
+            "version-control": {
+                name: "Version Control",
+                tools: ["Git", "GitHub", "GitLab", "Bitbucket", "Azure DevOps", "SVN", "Mercurial", "Perforce", "Bazaar", "Fossil"]
+            },
+            testing: {
+                name: "Testing & QA",
+                tools: ["Selenium", "Jest", "JUnit", "TestNG", "Cypress", "Postman", "SoapUI", "LoadRunner", "JMeter", "Gatling"]
+            },
+            performance: {
+                name: "Performance Optimization",
+                tools: ["New Relic", "AppDynamics", "Dynatrace", "DataDog", "Pingdom", "GTmetrix", "WebPageTest", "Lighthouse", "K6", "Artillery"]
+            },
+            logging: {
+                name: "Logging & Analytics",
+                tools: ["ELK Stack", "Fluentd", "Logstash", "Splunk", "Graylog", "Loki", "Vector", "Filebeat", "Rsyslog", "Syslog-ng"]
+            },
+            general: {
+                name: "General DevOps",
+                tools: ["Git", "Linux", "Bash", "Python", "Go", "Node.js", "Docker", "Kubernetes", "Jenkins", "Terraform"]
+            }
+        };
+
+        // Enhanced Smart question templates for all DevOps tools
+        const smartQuestionTemplates = {
+            junior: {
+                scenario: [
+                    "You're a junior DevOps engineer and the {tool} service is showing errors. What are your first 3 investigation steps?",
+                    "Your team lead asks you to set up {tool} for a new project. Walk through your learning approach.",
+                    "A {tool} deployment failed during your shift. How would you gather information before escalating?",
+                    "The monitoring shows {tool} is consuming high resources. What basic checks would you perform?",
+                    "You need to troubleshoot {tool} connectivity issues. What tools and logs would you check first?"
+                ],
+                technical: [
+                    "Explain the basic architecture of {tool} and its main components.",
+                    "What are the essential {tool} commands you use daily and their purposes?",
+                    "Describe the key configuration files for {tool} and what they control.",
+                    "How would you check the status and health of {tool} services?",
+                    "What are the common {tool} best practices for beginners?"
+                ],
+                troubleshooting: [
+                    "A {tool} service won't start. What log files and error messages would you check?",
+                    "Users report slow performance with {tool}. What basic metrics would you examine?",
+                    "You can't connect to {tool}. What network and firewall checks would you perform?",
+                    "{tool} is using too much memory. What tools would you use to investigate?",
+                    "A {tool} configuration change broke the system. How would you rollback safely?"
+                ]
+            },
+            mid: {
+                scenario: [
+                    "Your {tool} infrastructure needs to handle 5x traffic during a product launch. Design a scaling strategy.",
+                    "A critical {tool} service failed during peak hours. Walk through your incident response process.",
+                    "Management wants to migrate from legacy systems to {tool}. Create a migration plan with minimal downtime.",
+                    "Your {tool} environment needs SOC 2 compliance. What security measures would you implement?",
+                    "A new development team needs {tool} access with proper governance. Design the onboarding process."
+                ],
+                technical: [
+                    "Design a {tool} architecture that supports multiple environments with proper isolation.",
+                    "Implement comprehensive monitoring and alerting for {tool} with actionable insights.",
+                    "Create a backup and disaster recovery strategy for {tool} with defined RTO/RPO.",
+                    "Design a CI/CD pipeline that integrates {tool} with automated testing and deployment.",
+                    "Implement {tool} security best practices including network segmentation and access controls."
+                ],
+                troubleshooting: [
+                    "Your {tool} cluster is experiencing intermittent performance issues. How do you diagnose systematically?",
+                    "{tool} performance has degraded over the past week. Design a root cause analysis approach.",
+                    "A {tool} deployment is causing cascading failures. How do you troubleshoot without impacting users?",
+                    "Multiple {tool} services are failing health checks. What's your investigation and recovery strategy?",
+                    "{tool} is showing high CPU but low throughput. How do you identify and resolve the bottleneck?"
+                ]
+            },
+            senior: {
+                scenario: [
+                    "Design a multi-region {tool} architecture that handles datacenter failures with automatic failover.",
+                    "Your organization needs {tool} standardization across 100+ microservices. Create a governance strategy.",
+                    "A security audit revealed {tool} vulnerabilities. Design a comprehensive remediation plan.",
+                    "The business wants 40% cost reduction while maintaining {tool} performance. How do you optimize?",
+                    "You need to mentor a team of 10 engineers on {tool}. Design a comprehensive learning program."
+                ],
+                technical: [
+                    "Architect a {tool} solution supporting multi-tenancy with strict isolation and resource quotas.",
+                    "Design an observability strategy for {tool} providing deep insights into system behavior.",
+                    "Implement zero-downtime deployment for {tool} with rapid rollbacks and canary releases.",
+                    "Create a {tool} platform enabling self-service capabilities while maintaining governance.",
+                    "Design a cost optimization framework for {tool} balancing performance, reliability, and budget."
+                ],
+                design: [
+                    "Design a {tool} platform scaling from 1,000 to 1,000,000 users with sub-second response times.",
+                    "Create a disaster recovery architecture for {tool} meeting enterprise availability requirements.",
+                    "Design a {tool} solution supporting both cloud-native and legacy applications in hybrid environments.",
+                    "Architect a {tool} platform enabling continuous deployment with strict security and compliance.",
+                    "Design {tool} infrastructure supporting global distribution with data sovereignty requirements."
+                ]
+            },
+            architect: {
+                scenario: [
+                    "The CTO wants enterprise-wide {tool} transformation. Present a 3-year strategic roadmap.",
+                    "Design a {tool} platform strategy supporting expansion into 15 countries with different compliance needs.",
+                    "Create a {tool} technology vision aligning with business objectives and competitive advantage.",
+                    "The board is concerned about {tool} costs and reliability. Present a strategy addressing both concerns.",
+                    "Design an enterprise {tool} adoption strategy including training, governance, and change management."
+                ],
+                design: [
+                    "Architect an enterprise {tool} platform supporting multiple business units with different compliance needs.",
+                    "Design a {tool} ecosystem enabling innovation while maintaining enterprise security and governance.",
+                    "Create a {tool} architecture supporting current needs and future growth while optimizing costs.",
+                    "Design a {tool} platform enabling digital transformation and new business models.",
+                    "Architect a {tool} solution providing competitive advantage through improved efficiency and time-to-market."
+                ],
+                technical: [
+                    "Design technical standards and patterns for {tool} adoption across a large enterprise.",
+                    "Create a {tool} reference architecture balancing innovation, standardization, and flexibility.",
+                    "Design a {tool} governance model enabling autonomy while ensuring consistency and compliance.",
+                    "Architect a {tool} platform supporting both centralized and federated operating models.",
+                    "Create a {tool} technology radar and adoption framework guiding technology investments."
+                ]
+            }
+        };
+
+        // AI Coding templates for different technologies
+        const aiCodingTemplates = {
+            bash: {
+                beginner: [
+                    "Create a script to check system health (CPU, memory, disk) and display colored output",
+                    "Write a backup script that compresses files older than 7 days",
+                    "Create a log rotation script with configurable retention periods",
+                    "Write a script to monitor a service and restart it if it's down",
+                    "Create a system information gathering script for troubleshooting"
+                ],
+                intermediate: [
+                    "Build a deployment script with rollback capabilities and health checks",
+                    "Create a monitoring script that sends alerts via multiple channels",
+                    "Write a database backup script with encryption and remote storage",
+                    "Build a load balancer health check script with automatic failover",
+                    "Create a security audit script checking for common vulnerabilities"
+                ],
+                advanced: [
+                    "Design a complete CI/CD pipeline script with parallel execution",
+                    "Create a disaster recovery automation script with multi-region support",
+                    "Build a performance monitoring script with predictive analytics",
+                    "Write a security compliance automation script for multiple standards",
+                    "Create a multi-cloud resource management script"
+                ]
+            },
+            python: {
+                beginner: [
+                    "Create a script to monitor AWS EC2 instances and send email alerts",
+                    "Write a log parser that extracts error patterns and generates reports",
+                    "Build a simple REST API health checker with retry logic",
+                    "Create a file synchronization script between local and cloud storage",
+                    "Write a configuration validator for YAML/JSON files"
+                ],
+                intermediate: [
+                    "Build a multi-cloud resource inventory system with cost analysis",
+                    "Create a deployment automation tool with blue-green deployment support",
+                    "Write a monitoring dashboard using Flask and real-time metrics",
+                    "Build a security scanner for container images and infrastructure",
+                    "Create a backup orchestration system with multiple storage backends"
+                ],
+                advanced: [
+                    "Design a self-healing infrastructure system using machine learning",
+                    "Create a comprehensive observability platform with custom metrics",
+                    "Build a multi-tenant CI/CD platform with resource isolation",
+                    "Write a cost optimization engine with predictive recommendations",
+                    "Create a security compliance framework with automated remediation"
+                ]
+            },
+            terraform: {
+                beginner: [
+                    "Create a basic AWS VPC with public and private subnets",
+                    "Build an auto-scaling web application infrastructure",
+                    "Design a simple multi-tier application architecture",
+                    "Create a monitoring setup with CloudWatch and SNS",
+                    "Build a basic CI/CD infrastructure with CodePipeline"
+                ],
+                intermediate: [
+                    "Design a multi-environment infrastructure with proper state management",
+                    "Create a reusable module library for common infrastructure patterns",
+                    "Build a disaster recovery setup with cross-region replication",
+                    "Design a security-hardened infrastructure with compliance controls",
+                    "Create a cost-optimized infrastructure with spot instances and scheduling"
+                ],
+                advanced: [
+                    "Design a multi-cloud infrastructure with consistent networking",
+                    "Create a self-service infrastructure platform with governance",
+                    "Build a zero-trust security architecture with micro-segmentation",
+                    "Design a global infrastructure with edge computing capabilities",
+                    "Create a compliance-as-code framework with automated auditing"
+                ]
+            },
+            kubernetes: {
+                beginner: [
+                    "Create a basic deployment with service and ingress for a web application",
+                    "Build a ConfigMap and Secret management setup for application configuration",
+                    "Design a simple monitoring setup with Prometheus and Grafana",
+                    "Create a basic CI/CD pipeline deploying to Kubernetes",
+                    "Build a simple backup strategy for persistent volumes"
+                ],
+                intermediate: [
+                    "Design a multi-tenant cluster with proper resource isolation",
+                    "Create a comprehensive logging and monitoring stack",
+                    "Build a GitOps deployment pipeline with ArgoCD",
+                    "Design a service mesh implementation with Istio",
+                    "Create a disaster recovery strategy with cross-cluster replication"
+                ],
+                advanced: [
+                    "Design a multi-cluster management platform with centralized control",
+                    "Create a custom operator for complex application lifecycle management",
+                    "Build a security-hardened cluster with policy enforcement",
+                    "Design a cost optimization framework with resource right-sizing",
+                    "Create a comprehensive observability platform with distributed tracing"
+                ]
+            }
+        };
+
+        // Mock interview question banks by role
+        const interviewQuestionBanks = {
+            "general": {
+                name: "General DevOps Interview",
+                questions: [
+                    "Tell me about your experience with DevOps practices and tools.",
+                    "How do you handle a production outage?",
+                    "Explain the difference between continuous integration and continuous deployment.",
+                    "How do you ensure security in your DevOps pipeline?",
+                    "Describe your experience with infrastructure as code."
+                ]
+            },
+            "cloud-engineer": {
+                name: "Cloud Engineer Interview",
+                questions: [
+                    "How do you design a highly available architecture in the cloud?",
+                    "Explain your approach to cloud cost optimization.",
+                    "How do you implement disaster recovery in cloud environments?",
+                    "Describe your experience with multi-cloud strategies.",
+                    "How do you ensure cloud security and compliance?"
+                ]
+            },
+            "sre": {
+                name: "Site Reliability Engineer Interview",
+                questions: [
+                    "How do you define and measure SLIs, SLOs, and SLAs?",
+                    "Explain your approach to incident response and post-mortems.",
+                    "How do you implement effective monitoring and alerting?",
+                    "Describe your experience with capacity planning and performance optimization.",
+                    "How do you balance reliability with feature velocity?"
+                ]
+            },
+            "platform-engineer": {
+                name: "Platform Engineer Interview",
+                questions: [
+                    "How do you design self-service platforms for development teams?",
+                    "Explain your approach to platform governance and standards.",
+                    "How do you handle multi-tenancy in platform design?",
+                    "Describe your experience with developer experience optimization.",
+                    "How do you measure platform adoption and success?"
+                ]
+            }
+        };
+
+        // Authentication functions
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if ((email === 'demo@devops.com' && password === 'demo123') || 
+                (email && password)) {
+                currentUser = {
+                    name: email === 'demo@devops.com' ? 'Smart Demo User' : email.split('@')[0],
+                    email: email,
+                    isAdmin: email === 'admin@devops.com' && password === 'admin123'
+                };
+                
+                document.getElementById('user-name').textContent = currentUser.name;
+                document.getElementById('login-page').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+                
+
+                
+                // Initialize Smart platform
+                initializeSmartPlatform();
+                showSection('ai-questions');
+            } else {
+                alert('Invalid credentials. Use demo@devops.com / demo123 or admin@devops.com / admin123 for admin access.');
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            
+            if (name && email && password) {
+                currentUser = {
+                    name: name,
+                    email: email
+                };
+                
+                document.getElementById('user-name').textContent = currentUser.name;
+                document.getElementById('register-page').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+                
+                initializeAIPlatform();
+                showSection('ai-questions');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function showLogin() {
+            document.getElementById('register-page').classList.add('hidden');
+            document.getElementById('login-page').classList.remove('hidden');
+        }
+
+        function showRegister() {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('register-page').classList.remove('hidden');
+        }
+
+        function logout() {
+            currentUser = null;
+            favorites = [];
+            aiGeneratedContent = { questions: [], coding: [], interviews: [] };
+            document.getElementById('app').classList.add('hidden');
+            document.getElementById('login-page').classList.remove('hidden');
+            
+            document.getElementById('login-email').value = 'demo@devops.com';
+            document.getElementById('login-password').value = 'demo123';
+        }
+
+        // Initialize Smart Platform
+        function initializeSmartPlatform() {
+            populateToolDropdowns();
+        }
+
+        function populateToolDropdowns() {
+            const toolSelect = document.getElementById('ai-tool');
+            const categorySelect = document.getElementById('ai-category');
+            
+            categorySelect.addEventListener('change', function() {
+                const category = this.value;
+                toolSelect.innerHTML = '<option value="">Auto-select based on category</option>';
+                
+                if (category && devopsTools[category]) {
+                    devopsTools[category].tools.forEach(tool => {
+                        const option = document.createElement('option');
+                        option.value = tool;
+                        option.textContent = tool;
+                        toolSelect.appendChild(option);
+                    });
+                }
+            });
+        }
+
+        // Navigation functions
+        function showSection(sectionName) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = 'nav-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors';
+            });
+            
+            document.getElementById(`${sectionName}-section`).classList.remove('hidden');
+            
+            // Update active nav button
+            const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => 
+                btn.onclick.toString().includes(sectionName)
+            );
+            if (activeBtn) {
+                if (sectionName === 'ai-questions') {
+                    activeBtn.className = 'nav-btn bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300';
+                } else {
+                    activeBtn.className = 'nav-btn bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-colors';
+                }
+            }
+            
+            if (sectionName === 'favorites') {
+                loadFavorites();
+            }
+        }
+
+        // AI Question Generation
+        function generateAIQuestions() {
+            const experience = document.getElementById('ai-experience').value;
+            const category = document.getElementById('ai-category').value;
+            const tool = document.getElementById('ai-tool').value;
+            const questionType = document.querySelector('input[name="question-type"]:checked').value;
+            const count = parseInt(document.getElementById('ai-count').value);
+            
+            const container = document.getElementById('ai-questions-container');
+            container.innerHTML = `
+                <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-8 text-center">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-white mx-auto mb-6"></div>
+                    <h3 class="text-xl font-bold mb-2">🤖 AI is generating your personalized questions...</h3>
+                    <p class="opacity-90">Analyzing ${experience} level requirements for ${devopsTools[category]?.name || 'DevOps'} tools</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const questions = createAIQuestions(experience, category, tool, questionType, count);
+                displayAIQuestions(questions);
+            }, 3000);
+        }
+
+        function createAIQuestions(experience, category, tool, questionType, count) {
+            const questions = [];
+            const templates = smartQuestionTemplates[experience][questionType] || smartQuestionTemplates[experience]['scenario'];
+            
+            // Get tools based on category and specific tool selection
+            let toolsList = [];
+            if (tool) {
+                toolsList = [tool];
+            } else if (devopsTools[category]) {
+                toolsList = devopsTools[category].tools;
+            } else {
+                toolsList = devopsTools.general.tools;
+            }
+            
+            for (let i = 0; i < count; i++) {
+                const template = templates[Math.floor(Math.random() * templates.length)];
+                const selectedTool = toolsList[Math.floor(Math.random() * toolsList.length)];
+                
+                const question = template.replace(/{tool}/g, selectedTool);
+                const answer = generateAIAnswer(question, experience, selectedTool, category);
+                
+                questions.push({
+                    id: `ai-q-${Date.now()}-${i}`,
+                    category: 'AI Generated',
+                    question: question,
+                    answer: answer,
+                    experience: experience,
+                    tool: selectedTool,
+                    questionType: questionType,
+                    timestamp: new Date().toISOString()
+                });
+            }
+            
+            aiGeneratedContent.questions = questions;
+            return questions;
+        }
+
+        function generateAIAnswer(question, experience, tool, category) {
+            const answerStructures = {
+                junior: [
+                    `For ${tool}, start with these basic steps:`,
+                    "1. Check the service status and basic health indicators",
+                    "2. Review recent logs for error messages or warnings", 
+                    "3. Verify configuration files haven't been modified",
+                    "4. Check system resources (CPU, memory, disk space)",
+                    "5. Consult official documentation and team runbooks",
+                    "6. If issues persist, escalate with gathered information",
+                    "7. Document your findings for future reference"
+                ],
+                mid: [
+                    `For ${tool} in a production environment, implement:`,
+                    "1. Comprehensive monitoring with proactive alerting",
+                    "2. Automated scaling based on demand patterns",
+                    "3. Infrastructure as code for consistent deployments",
+                    "4. Proper backup and disaster recovery procedures",
+                    "5. Security hardening following industry best practices",
+                    "6. Performance optimization and capacity planning",
+                    "7. Documentation and team knowledge sharing",
+                    "8. Regular security audits and compliance checks"
+                ],
+                senior: [
+                    `For enterprise-grade ${tool} implementation:`,
+                    "1. Design highly available, fault-tolerant architecture",
+                    "2. Implement comprehensive observability strategy",
+                    "3. Use advanced deployment patterns (blue-green, canary)",
+                    "4. Create disaster recovery with defined RTO/RPO",
+                    "5. Implement security and compliance frameworks",
+                    "6. Design cost optimization and governance policies",
+                    "7. Enable self-service capabilities for development teams",
+                    "8. Establish metrics-driven continuous improvement",
+                    "9. Create standards and best practices for organization",
+                    "10. Mentor teams and drive technical excellence"
+                ],
+                architect: [
+                    `For strategic ${tool} platform architecture:`,
+                    "1. Define enterprise strategy aligned with business goals",
+                    "2. Design platform capabilities enabling innovation",
+                    "3. Create governance balancing autonomy with consistency",
+                    "4. Implement technology standards and reference architectures",
+                    "5. Design for multi-region, multi-cloud environments",
+                    "6. Create cost optimization and resource management frameworks",
+                    "7. Implement organizational change management strategies",
+                    "8. Design technology roadmaps and investment strategies",
+                    "9. Create metrics for technology-business alignment",
+                    "10. Enable competitive advantage through platform capabilities"
+                ]
+            };
+            
+            return answerStructures[experience].join('\n');
+        }
+
+        function displayAIQuestions(questions) {
+            const container = document.getElementById('ai-questions-container');
+            container.innerHTML = '';
+            
+            // Header
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">🤖 AI Generated Questions</h3>
+                <p class="opacity-90 mb-4">Personalized for ${questions[0]?.experience} level professionals</p>
+                <div class="flex flex-wrap gap-3 text-sm">
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">📊 ${questions.length} Questions</span>
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">🎯 ${questions[0]?.questionType}</span>
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">🛠️ ${questions[0]?.tool}</span>
+                </div>
+            `;
+            container.appendChild(header);
+            
+            // Questions
+            questions.forEach((question, index) => {
+                const questionCard = createAIQuestionCard(question, index);
+                container.appendChild(questionCard);
+            });
+            
+            // Actions
+            const actions = document.createElement('div');
+            actions.className = 'bg-white rounded-lg shadow-lg p-6 text-center';
+            actions.innerHTML = `
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button onclick="startInlineQuiz()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        🎯 Start Quiz
+                    </button>
+                    <button onclick="generateAIQuestions()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        🔄 Generate New
+                    </button>
+                </div>
+            `;
+            container.appendChild(actions);
+        }
+
+        function createAIQuestionCard(question, index) {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg shadow-lg p-6 border-l-4 border-purple-500';
+            
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                            🤖 AI Generated
+                        </span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                            ${question.tool}
+                        </span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+                            ${question.experience}
+                        </span>
+                    </div>
+                    <button onclick="toggleFavorite('${question.id}')" class="text-2xl text-gray-300 hover:text-yellow-500 transition-colors">
+                        ☆
+                    </button>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">${question.question}</h3>
+                <div class="answer-content hidden">
+                    <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">🤖 AI Generated Answer:</h4>
+                        <p class="text-gray-700 whitespace-pre-line">${question.answer}</p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="toggleAnswer(this)" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300">
+                        Show AI Answer
+                    </button>
+                    <button onclick="improveAnswer('${question.id}')" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                        🔧 Improve Answer
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // AI Coding Assessment Generation
+        function generateAICoding() {
+            const level = document.getElementById('coding-level').value;
+            const tech = document.getElementById('coding-tech').value;
+            const type = document.getElementById('coding-type').value;
+            
+            const container = document.getElementById('ai-coding-container');
+            container.innerHTML = `
+                <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg p-8 text-center">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-white mx-auto mb-6"></div>
+                    <h3 class="text-xl font-bold mb-2">🤖 AI is creating your coding challenge...</h3>
+                    <p class="opacity-90">Generating ${level} level ${tech} assessment for ${type}</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const assessment = createAICodingAssessment(level, tech, type);
+                displayAICodingAssessment([assessment]);
+            }, 2500);
+        }
+
+        function generateMultipleCoding() {
+            const level = document.getElementById('coding-level').value;
+            const tech = document.getElementById('coding-tech').value;
+            const type = document.getElementById('coding-type').value;
+            
+            const container = document.getElementById('ai-coding-container');
+            container.innerHTML = `
+                <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg p-8 text-center">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-white mx-auto mb-6"></div>
+                    <h3 class="text-xl font-bold mb-2">🤖 AI is creating 5 coding challenges...</h3>
+                    <p class="opacity-90">Generating diverse ${level} level ${tech} assessments</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const assessments = [];
+                for (let i = 0; i < 5; i++) {
+                    assessments.push(createAICodingAssessment(level, tech, type, i));
+                }
+                displayAICodingAssessment(assessments);
+            }, 4000);
+        }
+
+        function createAICodingAssessment(level, tech, type, index = 0) {
+            const templates = aiCodingTemplates[tech] || aiCodingTemplates['bash'];
+            const levelTemplates = templates[level] || templates['beginner'];
+            
+            const title = levelTemplates[index % levelTemplates.length];
+            const description = generateCodingDescription(title, tech, level, type);
+            const requirements = generateCodingRequirements(title, tech, level);
+            const template = generateCodingTemplate(tech, title, level);
+            const solution = generateCodingSolution(title, tech, level);
+            
+            const assessment = {
+                id: `ai-c-${Date.now()}-${index}`,
+                title: title,
+                description: description,
+                requirements: requirements,
+                template: template,
+                solution: solution,
+                technology: tech,
+                level: level,
+                type: type,
+                timestamp: new Date().toISOString()
+            };
+            
+            aiGeneratedContent.coding.push(assessment);
+            return assessment;
+        }
+
+        function generateCodingDescription(title, tech, level, type) {
+            const descriptions = {
+                beginner: `This ${tech} challenge focuses on fundamental concepts and basic automation tasks. Perfect for building foundational skills in ${type}.`,
+                intermediate: `This ${tech} assessment tests your ability to handle complex scenarios and implement best practices in ${type}.`,
+                advanced: `This advanced ${tech} challenge requires deep technical knowledge and the ability to architect scalable solutions for ${type}.`,
+                expert: `This expert-level ${tech} assessment tests your mastery of advanced patterns and ability to solve complex enterprise-grade ${type} challenges.`
+            };
+            
+            return descriptions[level] || descriptions['beginner'];
+        }
+
+        function generateCodingRequirements(title, tech, level) {
+            const baseRequirements = {
+                bash: [
+                    "Script should be executable and include proper error handling",
+                    "Use functions for code organization and reusability",
+                    "Include logging and status reporting",
+                    "Handle edge cases and provide meaningful error messages"
+                ],
+                python: [
+                    "Code should follow PEP 8 style guidelines",
+                    "Include proper exception handling and logging",
+                    "Use appropriate data structures and algorithms",
+                    "Include unit tests for critical functions"
+                ],
+                terraform: [
+                    "Use proper resource naming conventions",
+                    "Include variable definitions and outputs",
+                    "Implement proper state management",
+                    "Include documentation and examples"
+                ],
+                kubernetes: [
+                    "Follow Kubernetes best practices for resource definitions",
+                    "Include proper resource limits and requests",
+                    "Implement health checks and readiness probes",
+                    "Use appropriate labels and selectors"
+                ]
+            };
+            
+            const requirements = baseRequirements[tech] || baseRequirements['bash'];
+            return requirements.slice(0, Math.min(4, requirements.length)).join(', ');
+        }
+
+        function generateCodingTemplate(tech, title, level) {
+            const templates = {
+                bash: `#!/bin/bash
+# ${title}
+# Level: ${level}
+
+set -euo pipefail
+
+# Configuration
+LOG_FILE="/var/log/script.log"
+DEBUG=false
+
+# Functions
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+}
+
+error_exit() {
+    log "ERROR: $1"
+    exit 1
+}
+
+main() {
+    log "Starting ${title.toLowerCase()}..."
+    
+    # TODO: Implement your solution here
+    
+    log "Completed successfully"
+}
+
+# Execute main function
+main "$@"`,
+                python: `#!/usr/bin/env python3
+"""
+${title}
+Level: ${level}
+"""
+
+import logging
+import sys
+from typing import Dict, List, Optional
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+class ${title.replace(/\s+/g, '')}:
+    """Main class for ${title.toLowerCase()}"""
+    
+    def __init__(self):
+        """Initialize the class"""
+        pass
+    
+    def execute(self) -> bool:
+        """
+        Main execution method
+        
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            logger.info("Starting ${title.toLowerCase()}...")
+            
+            # TODO: Implement your solution here
+            
+            logger.info("Completed successfully")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return False
+
+def main():
+    """Main function"""
+    processor = ${title.replace(/\s+/g, '')}()
+    success = processor.execute()
+    sys.exit(0 if success else 1)
+
+if __name__ == "__main__":
+    main()`,
+                terraform: `# ${title}
+# Level: ${level}
+
+terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+# Variables
+variable "environment" {
+  description = "Environment name"
+  type        = string
+  default     = "dev"
+}
+
+variable "project_name" {
+  description = "Project name"
+  type        = string
+  default     = "devops-project"
+}
+
+# TODO: Add your resource definitions here
+
+# Outputs
+output "summary" {
+  description = "Summary of created resources"
+  value = {
+    # TODO: Add relevant outputs
+  }
+}`,
+                kubernetes: `# ${title}
+# Level: ${level}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app
+  labels:
+    app: example-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        # TODO: Add your configuration here
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-app-service
+spec:
+  selector:
+    app: example-app
+  ports:
+  - port: 80
+    targetPort: 80
+  # TODO: Configure service type and additional settings`
+            };
+            
+            return templates[tech] || templates['bash'];
+        }
+
+        function generateCodingSolution(title, tech, level) {
+            return `This is a ${level} level ${tech} challenge. The solution should demonstrate:
+
+1. **Best Practices**: Follow ${tech} coding standards and conventions
+2. **Error Handling**: Implement robust error handling and logging
+3. **Scalability**: Design for maintainability and extensibility
+4. **Security**: Include security considerations appropriate for ${level} level
+5. **Documentation**: Provide clear documentation and comments
+
+Key implementation areas:
+- Core functionality implementation
+- Configuration management
+- Monitoring and observability
+- Testing and validation
+- Deployment considerations
+
+The solution should be production-ready and demonstrate understanding of ${tech} ecosystem and DevOps principles.`;
+        }
+
+        function displayAICodingAssessment(assessments) {
+            const container = document.getElementById('ai-coding-container');
+            container.innerHTML = '';
+            
+            // Header
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">💻 AI Generated Coding Challenges</h3>
+                <p class="opacity-90 mb-4">Personalized ${assessments[0]?.level} level challenges</p>
+                <div class="flex flex-wrap gap-3 text-sm">
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">📊 ${assessments.length} Challenge${assessments.length > 1 ? 's' : ''}</span>
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">🛠️ ${assessments[0]?.technology}</span>
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">🎯 ${assessments[0]?.type}</span>
+                </div>
+            `;
+            container.appendChild(header);
+            
+            // Assessments
+            assessments.forEach((assessment, index) => {
+                const assessmentCard = createAICodingCard(assessment, index);
+                container.appendChild(assessmentCard);
+            });
+            
+            // Actions
+            const actions = document.createElement('div');
+            actions.className = 'bg-white rounded-lg shadow-lg p-6 text-center';
+            actions.innerHTML = `
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button onclick="generateMultipleCoding()" class="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors">
+                        🔄 Generate More
+                    </button>
+                </div>
+            `;
+            container.appendChild(actions);
+        }
+
+        function createAICodingCard(assessment, index) {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg shadow-lg p-6 border-l-4 border-green-500';
+            
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                            🤖 AI Generated
+                        </span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                            ${assessment.technology}
+                        </span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                            ${assessment.level}
+                        </span>
+                    </div>
+                    <button onclick="toggleFavorite('${assessment.id}')" class="text-2xl text-gray-300 hover:text-yellow-500 transition-colors">
+                        ☆
+                    </button>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-800 mb-3">${assessment.title}</h3>
+                <p class="text-gray-600 mb-4">${assessment.description}</p>
+                
+                <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                    <h4 class="font-semibold text-blue-800 mb-2">📋 Requirements:</h4>
+                    <p class="text-blue-700 text-sm">${assessment.requirements}</p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-semibold text-white">🔧 Template Code:</h4>
+                        <button onclick="copyCode('template-${assessment.id}')" class="bg-gray-700 text-white px-3 py-1 rounded text-sm hover:bg-gray-600 transition-colors">
+                            📋 Copy
+                        </button>
+                    </div>
+                    <pre id="template-${assessment.id}" class="text-green-400 text-sm overflow-x-auto"><code>${assessment.template}</code></pre>
+                </div>
+                
+                <div class="solution-content hidden">
+                    <div class="bg-gradient-to-r from-green-50 to-teal-50 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">💡 Solution Guidelines:</h4>
+                        <p class="text-gray-700 whitespace-pre-line text-sm">${assessment.solution}</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-3 flex-wrap">
+                    <button onclick="toggleSolution(this)" class="bg-gradient-to-r from-green-600 to-teal-600 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-teal-700 transition-all duration-300">
+                        💡 Show Solution
+                    </button>
+                    <button onclick="runCode('${assessment.id}')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        ▶️ Test Code
+                    </button>
+                    <button onclick="improveChallenge('${assessment.id}')" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                        🔧 Improve
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // AI Mock Interview Functions
+        function startAIMockInterview() {
+            const interviewType = document.getElementById('interview-type').value;
+            const companySize = document.getElementById('company-size').value;
+            const duration = parseInt(document.getElementById('interview-duration').value);
+            const focusAreas = Array.from(document.querySelectorAll('input[name="focus-areas"]:checked')).map(cb => cb.value);
+            
+            const container = document.getElementById('ai-interview-container');
+            container.innerHTML = `
+                <div class="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-8 text-center">
+                    <div class="animate-pulse text-6xl mb-4">🎤</div>
+                    <h3 class="text-xl font-bold mb-2">🤖 AI is preparing your mock interview...</h3>
+                    <p class="opacity-90">Setting up ${interviewType} interview for ${companySize} company</p>
+                    <div class="mt-4">
+                        <div class="bg-white bg-opacity-20 rounded-full h-2 w-64 mx-auto">
+                            <div class="bg-white rounded-full h-2 animate-pulse" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const interview = createAIMockInterview(interviewType, companySize, duration, focusAreas);
+                displayMockInterview(interview);
+            }, 3000);
+        }
+
+        function createAIMockInterview(interviewType, companySize, duration, focusAreas) {
+            const questionBank = interviewQuestionBanks[interviewType] || interviewQuestionBanks['general'];
+            const questionsCount = Math.ceil(duration / 10); // Roughly 10 minutes per question
+            
+            const questions = generateInterviewQuestions(interviewType, companySize, focusAreas, questionsCount);
+            
+            const interview = {
+                id: `ai-i-${Date.now()}`,
+                type: interviewType,
+                companySize: companySize,
+                duration: duration,
+                focusAreas: focusAreas,
+                questions: questions,
+                currentQuestion: 0,
+                startTime: new Date(),
+                responses: [],
+                timestamp: new Date().toISOString()
+            };
+            
+            currentInterview = interview;
+            aiGeneratedContent.interviews.push(interview);
+            return interview;
+        }
+
+        function generateInterviewQuestions(interviewType, companySize, focusAreas, count) {
+            const questions = [];
+            const baseQuestions = interviewQuestionBanks[interviewType]?.questions || interviewQuestionBanks['general'].questions;
+            
+            // Add role-specific questions
+            for (let i = 0; i < Math.min(count, baseQuestions.length); i++) {
+                questions.push({
+                    id: `q-${i}`,
+                    question: baseQuestions[i],
+                    type: 'behavioral',
+                    expectedDuration: 8,
+                    followUp: generateFollowUpQuestions(baseQuestions[i], interviewType)
+                });
+            }
+            
+            // Add technical questions based on focus areas
+            if (focusAreas.length > 0) {
+                focusAreas.forEach(area => {
+                    const techQuestions = generateTechnicalQuestions(area, interviewType, companySize);
+                    questions.push(...techQuestions.slice(0, 2));
+                });
+            }
+            
+            return questions.slice(0, count);
+        }
+
+        function generateTechnicalQuestions(area, interviewType, companySize) {
+            const technicalQuestions = {
+                cloud: [
+                    "How would you design a highly available architecture in AWS/Azure?",
+                    "Explain your approach to cloud cost optimization.",
+                    "How do you implement disaster recovery in cloud environments?"
+                ],
+                containers: [
+                    "How would you troubleshoot a Kubernetes pod that's not starting?",
+                    "Explain your approach to container security and scanning.",
+                    "How do you handle persistent storage in containerized environments?"
+                ],
+                cicd: [
+                    "Design a CI/CD pipeline for a microservices architecture.",
+                    "How do you handle secrets management in CI/CD pipelines?",
+                    "Explain your approach to deployment strategies and rollbacks."
+                ],
+                monitoring: [
+                    "How do you design an effective monitoring and alerting strategy?",
+                    "Explain your approach to distributed tracing and observability.",
+                    "How do you handle alert fatigue and noise reduction?"
+                ],
+                security: [
+                    "How do you implement security scanning in CI/CD pipelines?",
+                    "Explain your approach to secrets management and rotation.",
+                    "How do you handle compliance requirements in DevOps processes?"
+                ],
+                infrastructure: [
+                    "How do you manage infrastructure state and prevent drift?",
+                    "Explain your approach to infrastructure testing and validation.",
+                    "How do you handle infrastructure changes in production?"
+                ]
+            };
+            
+            return (technicalQuestions[area] || []).map((q, i) => ({
+                id: `tech-${area}-${i}`,
+                question: q,
+                type: 'technical',
+                expectedDuration: 12,
+                followUp: [`Can you walk me through a specific example?`, `How would you handle this at scale?`]
+            }));
+        }
+
+        function generateFollowUpQuestions(baseQuestion, interviewType) {
+            const followUps = [
+                "Can you give me a specific example from your experience?",
+                "How would you handle this differently in a larger organization?",
+                "What tools would you use to implement this?",
+                "How would you measure the success of this approach?",
+                "What challenges have you faced with this in the past?"
+            ];
+            
+            return followUps.slice(0, 2);
+        }
+
+        // Timer functions
+        function startInterviewTimer(totalSeconds) {
+            if (interviewTimer) clearInterval(interviewTimer);
+            
+            let remainingSeconds = totalSeconds;
+            
+            interviewTimer = setInterval(() => {
+                remainingSeconds--;
+                
+                const minutes = Math.floor(remainingSeconds / 60);
+                const seconds = remainingSeconds % 60;
+                const timerElement = document.getElementById('interview-timer');
+                
+                if (timerElement) {
+                    timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // Change color when time is running low
+                    if (remainingSeconds <= 300) { // 5 minutes
+                        timerElement.className = 'font-mono text-lg text-red-300';
+                    } else if (remainingSeconds <= 600) { // 10 minutes
+                        timerElement.className = 'font-mono text-lg text-yellow-300';
+                    }
+                }
+                
+                if (remainingSeconds <= 0) {
+                    clearInterval(interviewTimer);
+                    finishInterview();
+                }
+            }, 1000);
+        }
+
+        function startQuestionTimer(seconds, questionIndex) {
+            if (questionTimer) clearInterval(questionTimer);
+            
+            let remainingSeconds = seconds;
+            const timerElement = document.getElementById('question-timer');
+            
+            if (timerElement) {
+                questionTimer = setInterval(() => {
+                    remainingSeconds--;
+                    
+                    const minutes = Math.floor(remainingSeconds / 60);
+                    const secs = remainingSeconds % 60;
+                    timerElement.textContent = `${minutes}:${secs.toString().padStart(2, '0')}`;
+                    
+                    if (remainingSeconds <= 30) {
+                        timerElement.className = 'text-red-600 font-mono font-bold';
+                    } else if (remainingSeconds <= 60) {
+                        timerElement.className = 'text-yellow-600 font-mono font-bold';
+                    }
+                    
+                    if (remainingSeconds <= 0) {
+                        clearInterval(questionTimer);
+                        // Auto-move to next question
+                        if (questionIndex + 1 < currentInterview.questions.length) {
+                            displayInterviewQuestion(currentInterview.questions[questionIndex + 1], questionIndex + 1, currentInterview.questions.length);
+                        } else {
+                            finishInterview();
+                        }
+                    }
+                }, 1000);
+            }
+        }
+
+        function displayMockInterview(interview) {
+            const container = document.getElementById('ai-interview-container');
+            container.innerHTML = '';
+            
+            // Interview header with timer
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">🎤 Smart Mock Interview Session</h3>
+                <div class="grid md:grid-cols-4 gap-4 text-sm">
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Interview Type</div>
+                        <div>${interviewQuestionBanks[interview.type]?.name || 'General DevOps'}</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Duration</div>
+                        <div>${interview.duration} minutes</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Questions</div>
+                        <div>${interview.questions.length} questions</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Time Remaining</div>
+                        <div id="interview-timer" class="font-mono text-lg">${interview.duration}:00</div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(header);
+            
+            // Start interview timer
+            startInterviewTimer(interview.duration * 60);
+            
+            // Current question
+            displayInterviewQuestion(interview.questions[0], 0, interview.questions.length);
+        }
+
+        function displayInterviewQuestion(question, index, total) {
+            const container = document.getElementById('ai-interview-container');
+            
+            // Remove existing question if any
+            const existingQuestion = container.querySelector('.interview-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const questionCard = document.createElement('div');
+            questionCard.className = 'interview-question bg-white rounded-lg shadow-lg p-6 mb-6';
+            
+            const questionTimeLimit = question.expectedDuration * 60; // Convert to seconds
+            
+            questionCard.innerHTML = `
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                        Question ${index + 1} of ${total}
+                    </span>
+                    <div class="flex gap-4 items-center">
+                        <span class="text-gray-600">⏱️ ${question.expectedDuration} min limit</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-mono">
+                            Time: <span id="question-timer">${question.expectedDuration}:00</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">${question.question}</h3>
+                
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <p class="text-yellow-800">
+                        <strong>💡 Interview Tip:</strong> Take your time to think through your answer. 
+                        Structure your response with specific examples and explain your reasoning.
+                    </p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Your Response:</label>
+                        <textarea id="response-${question.id}" rows="6" 
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary" 
+                                  placeholder="Type your answer here... Be specific and provide examples."></textarea>
+                    </div>
+                    
+                    <div class="flex gap-4 flex-wrap">
+                        <button onclick="recordResponse('${question.id}', ${index})" 
+                                class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                            ✅ Submit Answer
+                        </button>
+                        <button onclick="skipQuestion(${index})" 
+                                class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                            ⏭️ Skip Question
+                        </button>
+                        <button onclick="getHint('${question.id}')" 
+                                class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            💡 Get Hint
+                        </button>
+                        <button onclick="pauseInterview()" 
+                                class="bg-yellow-600 text-white px-6 py-3 rounded-lg hover:bg-yellow-700 transition-colors">
+                            ⏸️ Pause
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="hint-${question.id}" class="hidden mt-4">
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                        <h4 class="font-semibold text-blue-800 mb-2">🤖 Smart Hint:</h4>
+                        <p class="text-blue-700">${generateQuestionHint(question.question, question.type)}</p>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(questionCard);
+            
+            // Start question timer
+            startQuestionTimer(questionTimeLimit, index);
+        }
+
+        function generateQuestionHint(question, type) {
+            const hints = {
+                behavioral: [
+                    "Use the STAR method (Situation, Task, Action, Result) to structure your answer.",
+                    "Provide specific examples from your experience with measurable outcomes.",
+                    "Focus on your role and contributions, not just the team's achievements.",
+                    "Explain the challenges you faced and how you overcame them."
+                ],
+                technical: [
+                    "Start with the high-level architecture and then dive into specifics.",
+                    "Mention specific tools and technologies you would use.",
+                    "Consider scalability, security, and maintainability in your answer.",
+                    "Discuss trade-offs and alternative approaches."
+                ]
+            };
+            
+            const typeHints = hints[type] || hints['behavioral'];
+            return typeHints[Math.floor(Math.random() * typeHints.length)];
+        }
+
+        function recordResponse(questionId, index) {
+            const response = document.getElementById(`response-${questionId}`).value;
+            
+            if (!response.trim()) {
+                alert('Please provide a response before submitting.');
+                return;
+            }
+            
+            // Clear question timer
+            if (questionTimer) clearInterval(questionTimer);
+            
+            // Record the response
+            currentInterview.responses.push({
+                questionId: questionId,
+                response: response,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Move to next question or finish interview
+            if (index + 1 < currentInterview.questions.length) {
+                displayInterviewQuestion(currentInterview.questions[index + 1], index + 1, currentInterview.questions.length);
+            } else {
+                finishInterview();
+            }
+        }
+
+        function pauseInterview() {
+            if (interviewTimer) clearInterval(interviewTimer);
+            if (questionTimer) clearInterval(questionTimer);
+            
+            const container = document.getElementById('ai-interview-container');
+            const pauseOverlay = document.createElement('div');
+            pauseOverlay.id = 'pause-overlay';
+            pauseOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            pauseOverlay.innerHTML = `
+                <div class="bg-white rounded-lg p-8 text-center max-w-md">
+                    <div class="text-6xl mb-4">⏸️</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Interview Paused</h3>
+                    <p class="text-gray-600 mb-6">Take your time. Click resume when you're ready to continue.</p>
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="resumeInterview()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                            ▶️ Resume Interview
+                        </button>
+                        <button onclick="endInterview()" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors">
+                            🛑 End Interview
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(pauseOverlay);
+        }
+
+        function resumeInterview() {
+            const pauseOverlay = document.getElementById('pause-overlay');
+            if (pauseOverlay) {
+                pauseOverlay.remove();
+            }
+            
+            // Restart timers
+            const interviewTimerElement = document.getElementById('interview-timer');
+            const questionTimerElement = document.getElementById('question-timer');
+            
+            if (interviewTimerElement && questionTimerElement) {
+                const interviewTime = interviewTimerElement.textContent.split(':');
+                const questionTime = questionTimerElement.textContent.split(':');
+                
+                const interviewSeconds = parseInt(interviewTime[0]) * 60 + parseInt(interviewTime[1]);
+                const questionSeconds = parseInt(questionTime[0]) * 60 + parseInt(questionTime[1]);
+                
+                startInterviewTimer(interviewSeconds);
+                
+                // Find current question index
+                const currentQuestionIndex = currentInterview.responses.length;
+                startQuestionTimer(questionSeconds, currentQuestionIndex);
+            }
+        }
+
+        function endInterview() {
+            const pauseOverlay = document.getElementById('pause-overlay');
+            if (pauseOverlay) {
+                pauseOverlay.remove();
+            }
+            finishInterview();
+        }
+
+        function skipQuestion(index) {
+            if (index + 1 < currentInterview.questions.length) {
+                displayInterviewQuestion(currentInterview.questions[index + 1], index + 1, currentInterview.questions.length);
+            } else {
+                finishInterview();
+            }
+        }
+
+        function getHint(questionId) {
+            const hintDiv = document.getElementById(`hint-${questionId}`);
+            hintDiv.classList.toggle('hidden');
+        }
+
+        function finishInterview() {
+            // Clear all timers
+            if (interviewTimer) clearInterval(interviewTimer);
+            if (questionTimer) clearInterval(questionTimer);
+            
+            const container = document.getElementById('ai-interview-container');
+            
+            // Remove existing question
+            const existingQuestion = container.querySelector('.interview-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const endTime = new Date();
+            const duration = Math.round((endTime - currentInterview.startTime) / 1000 / 60);
+            const answeredQuestions = currentInterview.responses.length;
+            const totalQuestions = currentInterview.questions.length;
+            
+            const resultsCard = document.createElement('div');
+            resultsCard.className = 'bg-white rounded-lg shadow-lg p-8 text-center';
+            
+            resultsCard.innerHTML = `
+                <div class="text-6xl mb-4">🎉</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Interview Complete!</h3>
+                
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-green-600">${answeredQuestions}/${totalQuestions}</div>
+                        <div class="text-green-800">Questions Answered</div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">${duration}</div>
+                        <div class="text-blue-800">Minutes</div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-purple-600">${Math.round((answeredQuestions/totalQuestions)*100)}%</div>
+                        <div class="text-purple-800">Completion</div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">🤖 AI Feedback Summary:</h4>
+                    <p class="text-gray-700">
+                        Great job completing the ${interviewQuestionBanks[currentInterview.type]?.name || 'DevOps'} interview! 
+                        You answered ${answeredQuestions} out of ${totalQuestions} questions in ${duration} minutes. 
+                        ${generateInterviewFeedback(answeredQuestions, totalQuestions, duration)}
+                    </p>
+                </div>
+                
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <button onclick="viewDetailedFeedback()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        📊 Detailed Feedback
+                    </button>
+                    <button onclick="startAIMockInterview()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        🔄 New Interview
+                    </button>
+                    <button onclick="exportInterview()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        📤 Export Results
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(resultsCard);
+        }
+
+        function generateInterviewFeedback(answered, total, duration) {
+            const completionRate = (answered / total) * 100;
+            const avgTimePerQuestion = duration / answered;
+            
+            let feedback = "";
+            
+            if (completionRate >= 90) {
+                feedback += "Excellent completion rate! ";
+            } else if (completionRate >= 70) {
+                feedback += "Good completion rate. ";
+            } else {
+                feedback += "Consider practicing more to improve completion rate. ";
+            }
+            
+            if (avgTimePerQuestion <= 8) {
+                feedback += "You maintained good pacing throughout the interview. ";
+            } else if (avgTimePerQuestion <= 12) {
+                feedback += "Your pacing was reasonable for thoughtful responses. ";
+            } else {
+                feedback += "Consider practicing to improve response timing. ";
+            }
+            
+            feedback += "Focus on providing specific examples and measurable outcomes in your responses.";
+            
+            return feedback;
+        }
+
+        // Utility functions
+        function toggleAnswer(button) {
+            const answerContent = button.parentElement.querySelector('.answer-content');
+            if (answerContent.classList.contains('hidden')) {
+                answerContent.classList.remove('hidden');
+                button.textContent = button.textContent.replace('Show', 'Hide');
+            } else {
+                answerContent.classList.add('hidden');
+                button.textContent = button.textContent.replace('Hide', 'Show');
+            }
+        }
+
+        function toggleSolution(button) {
+            const solutionContent = button.parentElement.parentElement.querySelector('.solution-content');
+            if (solutionContent.classList.contains('hidden')) {
+                solutionContent.classList.remove('hidden');
+                button.textContent = '🙈 Hide Solution';
+            } else {
+                solutionContent.classList.add('hidden');
+                button.textContent = '💡 Show Solution';
+            }
+        }
+
+        function toggleFavorite(itemId) {
+            if (favorites.includes(itemId)) {
+                favorites = favorites.filter(id => id !== itemId);
+                event.target.textContent = '☆';
+                event.target.className = 'text-2xl text-gray-300 hover:text-yellow-500 transition-colors';
+            } else {
+                favorites.push(itemId);
+                event.target.textContent = '⭐';
+                event.target.className = 'text-2xl text-yellow-500 hover:text-yellow-500 transition-colors';
+            }
+        }
+
+        function copyCode(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Show temporary success message
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = '✅ Copied!';
+                button.className = button.className.replace('bg-gray-700', 'bg-green-600');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.className = button.className.replace('bg-green-600', 'bg-gray-700');
+                }, 2000);
+            }).catch(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function saveAIQuestions() {
+            alert(`${aiGeneratedContent.questions.length} AI generated questions have been saved to your question bank!`);
+        }
+
+        function saveCodingAssessments() {
+            alert(`${aiGeneratedContent.coding.length} AI generated coding challenges have been saved!`);
+        }
+
+        function loadFavorites() {
+            const container = document.getElementById('favorites-container');
+            container.innerHTML = '';
+            
+            if (favorites.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="text-6xl mb-4">⭐</div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">No favorites yet</h3>
+                        <p class="text-gray-600">Star some AI-generated content to see it here!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Show favorited items from all categories
+            const allContent = [
+                ...aiGeneratedContent.questions,
+                ...aiGeneratedContent.coding,
+                ...aiGeneratedContent.interviews
+            ];
+            
+            const favoriteItems = allContent.filter(item => favorites.includes(item.id));
+            
+            favoriteItems.forEach(item => {
+                let card;
+                if (item.question) {
+                    card = createAIQuestionCard(item);
+                } else if (item.title) {
+                    card = createAICodingCard(item);
+                }
+                if (card) {
+                    container.appendChild(card);
+                }
+            });
+        }
+
+
+
+        // Event listeners
+        document.getElementById('login-form').addEventListener('submit', handleLogin);
+        document.getElementById('register-form').addEventListener('submit', handleRegister);
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('login-email').value = 'demo@devops.com';
+            document.getElementById('login-password').value = 'demo123';
+        });
+
+        // Additional utility functions for demo purposes
+        function improveAnswer(questionId) {
+            alert('🤖 AI would analyze your question and provide an improved, more comprehensive answer with additional examples and best practices.');
+        }
+
+        function improveChallenge(challengeId) {
+            alert('🤖 AI would enhance this coding challenge with additional requirements, test cases, and advanced scenarios.');
+        }
+
+        function runCode(challengeId) {
+            const assessment = aiGeneratedContent.coding.find(c => c.id === challengeId);
+            if (!assessment) return;
+            
+            const container = event.target.parentElement.parentElement;
+            let testResultDiv = container.querySelector('.test-results');
+            
+            if (!testResultDiv) {
+                testResultDiv = document.createElement('div');
+                testResultDiv.className = 'test-results bg-gray-900 rounded-lg p-4 mt-4';
+                container.appendChild(testResultDiv);
+            }
+            
+            testResultDiv.innerHTML = `
+                <div class="flex items-center mb-2">
+                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-green-400 mr-2"></div>
+                    <span class="text-green-400 text-sm">Running tests...</span>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const testResults = generateTestResults(assessment);
+                testResultDiv.innerHTML = `
+                    <div class="text-white mb-2">
+                        <span class="text-green-400">✅ Test Results:</span>
+                    </div>
+                    <div class="space-y-1 text-sm">
+                        ${testResults.map(result => `
+                            <div class="flex items-center">
+                                <span class="${result.passed ? 'text-green-400' : 'text-red-400'}">${result.passed ? '✅' : '❌'}</span>
+                                <span class="text-gray-300 ml-2">${result.test}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="mt-3 text-sm">
+                        <span class="text-blue-400">Score: ${testResults.filter(r => r.passed).length}/${testResults.length}</span>
+                    </div>
+                `;
+            }, 2000);
+        }
+        
+        function generateTestResults(assessment) {
+            const testTypes = {
+                bash: [
+                    { test: 'Script executes without errors', passed: true },
+                    { test: 'Proper error handling implemented', passed: Math.random() > 0.3 },
+                    { test: 'Functions are properly defined', passed: Math.random() > 0.2 },
+                    { test: 'Logging functionality works', passed: Math.random() > 0.4 },
+                    { test: 'Exit codes are appropriate', passed: Math.random() > 0.3 }
+                ],
+                python: [
+                    { test: 'Code follows PEP 8 standards', passed: Math.random() > 0.3 },
+                    { test: 'Exception handling implemented', passed: true },
+                    { test: 'Unit tests pass', passed: Math.random() > 0.4 },
+                    { test: 'Performance requirements met', passed: Math.random() > 0.2 },
+                    { test: 'Security best practices followed', passed: Math.random() > 0.3 }
+                ],
+                terraform: [
+                    { test: 'Terraform plan executes successfully', passed: true },
+                    { test: 'Resource naming conventions followed', passed: Math.random() > 0.2 },
+                    { test: 'Variables properly defined', passed: Math.random() > 0.3 },
+                    { test: 'Outputs are meaningful', passed: Math.random() > 0.4 },
+                    { test: 'State management configured', passed: Math.random() > 0.3 }
+                ],
+                kubernetes: [
+                    { test: 'YAML syntax is valid', passed: true },
+                    { test: 'Resource limits defined', passed: Math.random() > 0.3 },
+                    { test: 'Health checks configured', passed: Math.random() > 0.4 },
+                    { test: 'Labels and selectors match', passed: Math.random() > 0.2 },
+                    { test: 'Security contexts applied', passed: Math.random() > 0.3 }
+                ]
+            };
+            
+            return testTypes[assessment.technology] || testTypes['bash'];
+        }
+
+        function exportQuestions() {
+            alert('📤 Questions would be exported as JSON/PDF format for offline study or sharing with your team.');
+        }
+
+        function exportCoding() {
+            alert('📤 Coding challenges would be exported with templates, solutions, and test cases.');
+        }
+
+        function exportInterview() {
+            alert('📤 Interview results would be exported as a comprehensive report with feedback and improvement suggestions.');
+        }
+
+        function viewDetailedFeedback() {
+            alert('📊 Detailed feedback would show response analysis, improvement suggestions, and comparison with industry standards.');
+        }
+
+        function generateInterviewQuestions() {
+            alert('📋 AI would generate a preview of interview questions based on your selected criteria without starting the full interview.');
+        }
+
+        function startSmartQuiz() {
+            const category = document.getElementById('quiz-category').value;
+            const count = parseInt(document.getElementById('quiz-count').value);
+            
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = `
+                <div class="bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg p-8 text-center">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-white mx-auto mb-6"></div>
+                    <h3 class="text-xl font-bold mb-2">🤖 Preparing your smart quiz...</h3>
+                    <p class="opacity-90">Creating ${count} questions from ${category || 'all categories'}</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const quiz = createSmartQuiz(category, count);
+                displayQuiz(quiz);
+            }, 2000);
+        }
+
+        // Add quiz timer functionality
+        let quizTimer = null;
+
+        function startQuizTimer(totalSeconds) {
+            if (quizTimer) clearInterval(quizTimer);
+            
+            let remainingSeconds = totalSeconds;
+            
+            quizTimer = setInterval(() => {
+                remainingSeconds--;
+                
+                const minutes = Math.floor(remainingSeconds / 60);
+                const seconds = remainingSeconds % 60;
+                const timerElement = document.getElementById('quiz-timer');
+                
+                if (timerElement) {
+                    timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // Change color when time is running low
+                    if (remainingSeconds <= 60) { // 1 minute
+                        timerElement.className = 'font-mono text-lg text-red-600 font-bold';
+                    } else if (remainingSeconds <= 180) { // 3 minutes
+                        timerElement.className = 'font-mono text-lg text-yellow-600 font-bold';
+                    }
+                }
+                
+                if (remainingSeconds <= 0) {
+                    clearInterval(quizTimer);
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function createSmartQuiz(category, count) {
+            const questions = [];
+            let toolsList = [];
+            
+            if (category && devopsTools[category]) {
+                toolsList = devopsTools[category].tools;
+            } else {
+                // Get tools from all categories
+                Object.values(devopsTools).forEach(cat => {
+                    toolsList = toolsList.concat(cat.tools);
+                });
+            }
+            
+            for (let i = 0; i < count; i++) {
+                const tool = toolsList[Math.floor(Math.random() * toolsList.length)];
+                const questionTypes = ['multiple-choice', 'true-false', 'scenario'];
+                const type = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+                
+                questions.push(generateQuizQuestion(tool, type, i));
+            }
+            
+            currentQuiz = {
+                id: `quiz-${Date.now()}`,
+                category: category,
+                questions: questions,
+                currentIndex: 0,
+                score: 0,
+                startTime: new Date()
+            };
+            
+            return currentQuiz;
+        }
+
+        function generateQuizQuestion(tool, type, index) {
+            const questionTemplates = {
+                'multiple-choice': [
+                    {
+                        question: `What is the primary purpose of ${tool}?`,
+                        options: ['Container orchestration', 'CI/CD automation', 'Monitoring and alerting', 'Infrastructure provisioning'],
+                        correct: 0
+                    },
+                    {
+                        question: `Which command is commonly used with ${tool}?`,
+                        options: [`${tool.toLowerCase()} start`, `${tool.toLowerCase()} deploy`, `${tool.toLowerCase()} status`, `${tool.toLowerCase()} config`],
+                        correct: 2
+                    }
+                ],
+                'true-false': [
+                    {
+                        question: `${tool} is primarily used for container orchestration.`,
+                        options: ['True', 'False'],
+                        correct: tool.toLowerCase().includes('kubernetes') || tool.toLowerCase().includes('docker') ? 0 : 1
+                    },
+                    {
+                        question: `${tool} requires root privileges to operate effectively.`,
+                        options: ['True', 'False'],
+                        correct: 1
+                    }
+                ],
+                'scenario': [
+                    {
+                        question: `Your ${tool} deployment is failing. What would be your first troubleshooting step?`,
+                        options: ['Check logs', 'Restart service', 'Update configuration', 'Contact support'],
+                        correct: 0
+                    }
+                ]
+            };
+            
+            const templates = questionTemplates[type];
+            const template = templates[Math.floor(Math.random() * templates.length)];
+            
+            return {
+                id: `q-${index}`,
+                type: type,
+                tool: tool,
+                question: template.question,
+                options: template.options,
+                correct: template.correct,
+                userAnswer: null
+            };
+        }
+
+        function displayQuiz(quiz) {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            // Calculate total time based on difficulty (2 minutes per question)
+            const totalTimeMinutes = quiz.questions.length * 2;
+            
+            // Quiz header
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">🎯 Smart Quiz Session</h3>
+                <div class="grid md:grid-cols-4 gap-4 text-sm">
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Category</div>
+                        <div>${quiz.category ? devopsTools[quiz.category]?.name : 'All Categories'}</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Questions</div>
+                        <div>${quiz.questions.length}</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Score</div>
+                        <div id="quiz-score">${quiz.score}/${quiz.questions.length}</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Time Left</div>
+                        <div id="quiz-timer" class="font-mono text-lg">${totalTimeMinutes}:00</div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(header);
+            
+            // Start quiz timer
+            startQuizTimer(totalTimeMinutes * 60);
+            
+            // Display first question
+            displayQuizQuestion(quiz.questions[0], 0, quiz.questions.length);
+        }
+
+        function displayQuizQuestion(question, index, total) {
+            const container = document.getElementById('quiz-container');
+            
+            // Remove existing question if any
+            const existingQuestion = container.querySelector('.quiz-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const questionCard = document.createElement('div');
+            questionCard.className = 'quiz-question bg-white rounded-lg shadow-lg p-6 mb-6';
+            
+            questionCard.innerHTML = `
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                        Question ${index + 1} of ${total}
+                    </span>
+                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                        ${question.tool}
+                    </span>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">${question.question}</h3>
+                
+                <div class="space-y-3 mb-6">
+                    ${question.options.map((option, i) => `
+                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <input type="radio" name="quiz-answer" value="${i}" class="mr-3">
+                            <span>${option}</span>
+                        </label>
+                    `).join('')}
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="submitQuizAnswer('${question.id}', ${index})" 
+                            class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        ✅ Submit Answer
+                    </button>
+                    <button onclick="skipQuizQuestion(${index})" 
+                            class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                        ⏭️ Skip Question
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(questionCard);
+        }
+
+        function submitQuizAnswer(questionId, index) {
+            const selectedAnswer = document.querySelector('input[name="quiz-answer"]:checked');
+            
+            if (!selectedAnswer) {
+                alert('Please select an answer before submitting.');
+                return;
+            }
+            
+            const userAnswer = parseInt(selectedAnswer.value);
+            const question = currentQuiz.questions[index];
+            question.userAnswer = userAnswer;
+            
+            // Check if answer is correct
+            if (userAnswer === question.correct) {
+                currentQuiz.score++;
+                document.getElementById('quiz-score').textContent = `${currentQuiz.score}/${currentQuiz.questions.length}`;
+            }
+            
+            // Move to next question or finish quiz
+            if (index + 1 < currentQuiz.questions.length) {
+                displayQuizQuestion(currentQuiz.questions[index + 1], index + 1, currentQuiz.questions.length);
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function skipQuizQuestion(index) {
+            if (index + 1 < currentQuiz.questions.length) {
+                displayQuizQuestion(currentQuiz.questions[index + 1], index + 1, currentQuiz.questions.length);
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            // Clear quiz timer
+            if (quizTimer) clearInterval(quizTimer);
+            
+            const container = document.getElementById('quiz-container');
+            
+            // Remove existing question
+            const existingQuestion = container.querySelector('.quiz-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const endTime = new Date();
+            const duration = Math.round((endTime - currentQuiz.startTime) / 1000 / 60);
+            const percentage = Math.round((currentQuiz.score / currentQuiz.questions.length) * 100);
+            
+            const resultsCard = document.createElement('div');
+            resultsCard.className = 'bg-white rounded-lg shadow-lg p-8 text-center';
+            
+            resultsCard.innerHTML = `
+                <div class="text-6xl mb-4">${percentage >= 80 ? '🎉' : percentage >= 60 ? '👍' : '📚'}</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Quiz Complete!</h3>
+                
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-green-600">${currentQuiz.score}/${currentQuiz.questions.length}</div>
+                        <div class="text-green-800">Correct Answers</div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">${percentage}%</div>
+                        <div class="text-blue-800">Score</div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-purple-600">${duration}</div>
+                        <div class="text-purple-800">Minutes</div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">🤖 Performance Summary:</h4>
+                    <p class="text-gray-700">
+                        ${percentage >= 80 ? 'Excellent work! You have a strong understanding of DevOps tools and concepts.' :
+                          percentage >= 60 ? 'Good job! You have a solid foundation, but there\'s room for improvement.' :
+                          'Keep studying! Focus on the areas where you missed questions to improve your knowledge.'}
+                    </p>
+                </div>
+                
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <button onclick="reviewQuizAnswers()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        📊 Review Answers
+                    </button>
+                    <button onclick="startSmartQuiz()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        🔄 New Quiz
+                    </button>
+
+                </div>
+            `;
+            
+            container.appendChild(resultsCard);
+        }
+
+        function reviewQuizAnswers() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">📊 Quiz Review</h3>
+                <p class="opacity-90">Review your answers and learn from mistakes</p>
+            `;
+            container.appendChild(header);
+            
+            currentQuiz.questions.forEach((question, index) => {
+                const isCorrect = question.userAnswer === question.correct;
+                const reviewCard = document.createElement('div');
+                reviewCard.className = `bg-white rounded-lg shadow-lg p-6 mb-4 border-l-4 ${isCorrect ? 'border-green-500' : 'border-red-500'}`;
+                
+                reviewCard.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                            Question ${index + 1}
+                        </span>
+                        <span class="${isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} px-3 py-1 rounded-full text-sm font-medium">
+                            ${isCorrect ? '✅ Correct' : '❌ Incorrect'}
+                        </span>
+                    </div>
+                    
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
+                    
+                    <div class="space-y-2 mb-4">
+                        ${question.options.map((option, i) => `
+                            <div class="p-2 rounded ${
+                                i === question.correct ? 'bg-green-100 text-green-800' :
+                                i === question.userAnswer && i !== question.correct ? 'bg-red-100 text-red-800' :
+                                'bg-gray-50 text-gray-700'
+                            }">
+                                ${i === question.correct ? '✅' : i === question.userAnswer && i !== question.correct ? '❌' : '○'} ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    ${!isCorrect ? `
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                            <p class="text-blue-800">
+                                <strong>💡 Explanation:</strong> The correct answer is "${question.options[question.correct]}" 
+                                because it represents the primary function of ${question.tool} in DevOps workflows.
+                            </p>
+                        </div>
+                    ` : ''}
+                `;
+                
+                container.appendChild(reviewCard);
+            });
+            
+            const backButton = document.createElement('div');
+            backButton.className = 'text-center';
+            backButton.innerHTML = `
+                <button onclick="startSmartQuiz()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                    🔄 Take Another Quiz
+                </button>
+            `;
+            container.appendChild(backButton);
+        }
+
+        function exportQuizResults() {
+            alert('📤 Quiz results would be exported as a detailed report with performance analysis and improvement recommendations.');
+        }
+
+        function startInlineQuiz() {
+            if (!aiGeneratedContent.questions || aiGeneratedContent.questions.length === 0) {
+                alert('Please generate some questions first!');
+                return;
+            }
+            
+            // Convert AI questions to quiz format
+            const quizQuestions = aiGeneratedContent.questions.map((q, index) => {
+                return {
+                    id: `gen-q-${index}`,
+                    type: 'open-ended',
+                    tool: q.tool,
+                    question: q.question,
+                    answer: q.answer,
+                    userAnswer: null
+                };
+            });
+            
+            currentQuiz = {
+                id: `quiz-generated-${Date.now()}`,
+                category: 'Generated Questions',
+                questions: quizQuestions,
+                currentIndex: 0,
+                score: 0,
+                startTime: new Date()
+            };
+            
+            // Display quiz in the same section
+            displayInlineQuiz(currentQuiz);
+        }
+        
+        function displayInlineQuiz(quiz) {
+            const container = document.getElementById('ai-questions-container');
+            container.innerHTML = '';
+            
+            // Quiz header
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">🎯 Smart Questions Quiz</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Source</div>
+                        <div>Smart Generated Questions</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Questions</div>
+                        <div>${quiz.questions.length}</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Progress</div>
+                        <div id="inline-quiz-progress">0/${quiz.questions.length}</div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(header);
+            
+            // Display first question
+            displayInlineQuizQuestion(quiz.questions[0], 0, quiz.questions.length);
+        }
+        
+        function displayInlineQuizQuestion(question, index, total) {
+            const container = document.getElementById('ai-questions-container');
+            
+            // Remove existing question if any
+            const existingQuestion = container.querySelector('.inline-quiz-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const questionCard = document.createElement('div');
+            questionCard.className = 'inline-quiz-question bg-white rounded-lg shadow-lg p-6 mb-6';
+            
+            questionCard.innerHTML = `
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                        Question ${index + 1} of ${total}
+                    </span>
+                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                        ${question.tool}
+                    </span>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">${question.question}</h3>
+                
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Your Answer:</label>
+                        <textarea id="inline-quiz-response-${question.id}" rows="4" 
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary" 
+                                  placeholder="Type your answer here..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="submitInlineQuizAnswer('${question.id}', ${index})" 
+                            class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        ✅ Submit Answer
+                    </button>
+                    <button onclick="skipInlineQuizQuestion(${index})" 
+                            class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                        ⏭️ Skip Question
+                    </button>
+                    <button onclick="showInlineQuizHint('${question.id}')" 
+                            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        💡 Show Answer
+                    </button>
+                </div>
+                
+                <div id="inline-quiz-hint-${question.id}" class="hidden mt-4">
+                    <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                        <h4 class="font-semibold text-green-800 mb-2">💡 Smart Answer:</h4>
+                        <p class="text-green-700 whitespace-pre-line text-sm">${question.answer}</p>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(questionCard);
+        }
+        
+        function submitInlineQuizAnswer(questionId, index) {
+            const response = document.getElementById(`inline-quiz-response-${questionId}`).value;
+            
+            const question = currentQuiz.questions[index];
+            question.userAnswer = response;
+            
+            // Update progress
+            document.getElementById('inline-quiz-progress').textContent = `${index + 1}/${currentQuiz.questions.length}`;
+            
+            // Move to next question or finish quiz
+            if (index + 1 < currentQuiz.questions.length) {
+                displayInlineQuizQuestion(currentQuiz.questions[index + 1], index + 1, currentQuiz.questions.length);
+            } else {
+                finishInlineQuiz();
+            }
+        }
+        
+        function skipInlineQuizQuestion(index) {
+            // Update progress
+            document.getElementById('inline-quiz-progress').textContent = `${index + 1}/${currentQuiz.questions.length}`;
+            
+            if (index + 1 < currentQuiz.questions.length) {
+                displayInlineQuizQuestion(currentQuiz.questions[index + 1], index + 1, currentQuiz.questions.length);
+            } else {
+                finishInlineQuiz();
+            }
+        }
+        
+        function showInlineQuizHint(questionId) {
+            const hintDiv = document.getElementById(`inline-quiz-hint-${questionId}`);
+            hintDiv.classList.toggle('hidden');
+        }
+        
+        function finishInlineQuiz() {
+            const container = document.getElementById('ai-questions-container');
+            
+            // Remove existing question
+            const existingQuestion = container.querySelector('.inline-quiz-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const endTime = new Date();
+            const duration = Math.round((endTime - currentQuiz.startTime) / 1000 / 60);
+            const answeredQuestions = currentQuiz.questions.filter(q => q.userAnswer && q.userAnswer.trim()).length;
+            
+            const resultsCard = document.createElement('div');
+            resultsCard.className = 'bg-white rounded-lg shadow-lg p-8 text-center';
+            
+            resultsCard.innerHTML = `
+                <div class="text-6xl mb-4">🎉</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Quiz Complete!</h3>
+                
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-green-600">${answeredQuestions}/${currentQuiz.questions.length}</div>
+                        <div class="text-green-800">Questions Answered</div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">${duration}</div>
+                        <div class="text-blue-800">Minutes</div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-purple-600">${Math.round((answeredQuestions/currentQuiz.questions.length)*100)}%</div>
+                        <div class="text-purple-800">Completion</div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">🤖 Performance Summary:</h4>
+                    <p class="text-gray-700">
+                        Great job completing the Smart generated quiz! You answered ${answeredQuestions} out of ${currentQuiz.questions.length} questions in ${duration} minutes. 
+                        Review the answers to reinforce your learning.
+                    </p>
+                </div>
+                
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <button onclick="reviewInlineQuizAnswers()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        📊 Review Answers
+                    </button>
+                    <button onclick="generateAIQuestions()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        🔄 Generate New Questions
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(resultsCard);
+        }
+        
+        function reviewInlineQuizAnswers() {
+            const container = document.getElementById('ai-questions-container');
+            container.innerHTML = '';
+            
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">📊 Quiz Review</h3>
+                <p class="opacity-90">Review your answers and the Smart generated solutions</p>
+            `;
+            container.appendChild(header);
+            
+            currentQuiz.questions.forEach((question, index) => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'bg-white rounded-lg shadow-lg p-6 mb-4 border-l-4 border-blue-500';
+                
+                reviewCard.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                            Question ${index + 1}
+                        </span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                            ${question.tool}
+                        </span>
+                    </div>
+                    
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
+                    
+                    ${question.userAnswer ? `
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                            <h5 class="font-semibold text-blue-800 mb-2">Your Answer:</h5>
+                            <p class="text-blue-700">${question.userAnswer}</p>
+                        </div>
+                    ` : `
+                        <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-4">
+                            <p class="text-gray-600 italic">No answer provided</p>
+                        </div>
+                    `}
+                    
+                    <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                        <h5 class="font-semibold text-green-800 mb-2">🤖 Smart Answer:</h5>
+                        <p class="text-green-700 whitespace-pre-line text-sm">${question.answer}</p>
+                    </div>
+                `;
+                
+                container.appendChild(reviewCard);
+            });
+            
+            const backButton = document.createElement('div');
+            backButton.className = 'text-center';
+            backButton.innerHTML = `
+                <button onclick="generateAIQuestions()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                    🔄 Generate New Questions
+                </button>
+            `;
+            container.appendChild(backButton);
+        }
+
+        function displayGeneratedQuiz(quiz) {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            // Quiz header
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">🎯 Smart Generated Quiz</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Source</div>
+                        <div>Smart Generated Questions</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Questions</div>
+                        <div>${quiz.questions.length}</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 px-3 py-2 rounded">
+                        <div class="font-semibold">Progress</div>
+                        <div id="quiz-progress">0/${quiz.questions.length}</div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(header);
+            
+            // Display first question
+            displayGeneratedQuizQuestion(quiz.questions[0], 0, quiz.questions.length);
+        }
+
+        function displayGeneratedQuizQuestion(question, index, total) {
+            const container = document.getElementById('quiz-container');
+            
+            // Remove existing question if any
+            const existingQuestion = container.querySelector('.quiz-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const questionCard = document.createElement('div');
+            questionCard.className = 'quiz-question bg-white rounded-lg shadow-lg p-6 mb-6';
+            
+            questionCard.innerHTML = `
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                        Question ${index + 1} of ${total}
+                    </span>
+                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
+                        ${question.tool}
+                    </span>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">${question.question}</h3>
+                
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Your Answer:</label>
+                        <textarea id="quiz-response-${question.id}" rows="4" 
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary" 
+                                  placeholder="Type your answer here..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button onclick="submitGeneratedQuizAnswer('${question.id}', ${index})" 
+                            class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        ✅ Submit Answer
+                    </button>
+                    <button onclick="skipGeneratedQuizQuestion(${index})" 
+                            class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                        ⏭️ Skip Question
+                    </button>
+                    <button onclick="showQuizHint('${question.id}')" 
+                            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        💡 Show Answer
+                    </button>
+                </div>
+                
+                <div id="quiz-hint-${question.id}" class="hidden mt-4">
+                    <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                        <h4 class="font-semibold text-green-800 mb-2">💡 Smart Answer:</h4>
+                        <p class="text-green-700 whitespace-pre-line text-sm">${question.answer}</p>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(questionCard);
+        }
+
+        function submitGeneratedQuizAnswer(questionId, index) {
+            const response = document.getElementById(`quiz-response-${questionId}`).value;
+            
+            const question = currentQuiz.questions[index];
+            question.userAnswer = response;
+            
+            // Update progress
+            document.getElementById('quiz-progress').textContent = `${index + 1}/${currentQuiz.questions.length}`;
+            
+            // Move to next question or finish quiz
+            if (index + 1 < currentQuiz.questions.length) {
+                displayGeneratedQuizQuestion(currentQuiz.questions[index + 1], index + 1, currentQuiz.questions.length);
+            } else {
+                finishGeneratedQuiz();
+            }
+        }
+
+        function skipGeneratedQuizQuestion(index) {
+            // Update progress
+            document.getElementById('quiz-progress').textContent = `${index + 1}/${currentQuiz.questions.length}`;
+            
+            if (index + 1 < currentQuiz.questions.length) {
+                displayGeneratedQuizQuestion(currentQuiz.questions[index + 1], index + 1, currentQuiz.questions.length);
+            } else {
+                finishGeneratedQuiz();
+            }
+        }
+
+        function showQuizHint(questionId) {
+            const hintDiv = document.getElementById(`quiz-hint-${questionId}`);
+            hintDiv.classList.toggle('hidden');
+        }
+
+        function finishGeneratedQuiz() {
+            const container = document.getElementById('quiz-container');
+            
+            // Remove existing question
+            const existingQuestion = container.querySelector('.quiz-question');
+            if (existingQuestion) {
+                existingQuestion.remove();
+            }
+            
+            const endTime = new Date();
+            const duration = Math.round((endTime - currentQuiz.startTime) / 1000 / 60);
+            const answeredQuestions = currentQuiz.questions.filter(q => q.userAnswer && q.userAnswer.trim()).length;
+            
+            const resultsCard = document.createElement('div');
+            resultsCard.className = 'bg-white rounded-lg shadow-lg p-8 text-center';
+            
+            resultsCard.innerHTML = `
+                <div class="text-6xl mb-4">🎉</div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Quiz Complete!</h3>
+                
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-green-600">${answeredQuestions}/${currentQuiz.questions.length}</div>
+                        <div class="text-green-800">Questions Answered</div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">${duration}</div>
+                        <div class="text-blue-800">Minutes</div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-purple-600">${Math.round((answeredQuestions/currentQuiz.questions.length)*100)}%</div>
+                        <div class="text-purple-800">Completion</div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 mb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">🤖 Performance Summary:</h4>
+                    <p class="text-gray-700">
+                        Great job completing the Smart generated quiz! You answered ${answeredQuestions} out of ${currentQuiz.questions.length} questions in ${duration} minutes. 
+                        Review the answers to reinforce your learning.
+                    </p>
+                </div>
+                
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <button onclick="reviewGeneratedQuizAnswers()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        📊 Review Answers
+                    </button>
+                    <button onclick="startSmartQuiz()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        🔄 New Quiz
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(resultsCard);
+        }
+
+        function reviewGeneratedQuizAnswers() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const header = document.createElement('div');
+            header.className = 'bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-6 mb-6';
+            header.innerHTML = `
+                <h3 class="text-2xl font-bold mb-3">📊 Quiz Review</h3>
+                <p class="opacity-90">Review your answers and the Smart generated solutions</p>
+            `;
+            container.appendChild(header);
+            
+            currentQuiz.questions.forEach((question, index) => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'bg-white rounded-lg shadow-lg p-6 mb-4 border-l-4 border-blue-500';
+                
+                reviewCard.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                            Question ${index + 1}
+                        </span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                            ${question.tool}
+                        </span>
+                    </div>
+                    
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
+                    
+                    ${question.userAnswer ? `
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                            <h5 class="font-semibold text-blue-800 mb-2">Your Answer:</h5>
+                            <p class="text-blue-700">${question.userAnswer}</p>
+                        </div>
+                    ` : `
+                        <div class="bg-gray-50 border-l-4 border-gray-400 p-4 mb-4">
+                            <p class="text-gray-600 italic">No answer provided</p>
+                        </div>
+                    `}
+                    
+                    <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                        <h5 class="font-semibold text-green-800 mb-2">🤖 Smart Answer:</h5>
+                        <p class="text-green-700 whitespace-pre-line text-sm">${question.answer}</p>
+                    </div>
+                `;
+                
+                container.appendChild(reviewCard);
+            });
+            
+            const backButton = document.createElement('div');
+            backButton.className = 'text-center';
+            backButton.innerHTML = `
+                <button onclick="startSmartQuiz()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                    🔄 Take Another Quiz
+                </button>
+            `;
+            container.appendChild(backButton);
+        }
+
+        function randomizeExisting() {
+            const container = document.getElementById('ai-questions-container');
+            container.innerHTML = `
+                <div class="bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-lg p-8 text-center">
+                    <div class="animate-bounce text-6xl mb-6">🎲</div>
+                    <h3 class="text-xl font-bold mb-2">Generating random questions...</h3>
+                    <p class="opacity-90">Selecting from our comprehensive DevOps question database</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const randomQuestions = generateRandomQuestions();
+                displayAIQuestions(randomQuestions);
+            }, 2000);
+        }
+
+        function generateRandomQuestions() {
+            const questions = [];
+            const allTools = [];
+            
+            // Collect all tools from all categories
+            Object.values(devopsTools).forEach(category => {
+                allTools.push(...category.tools);
+            });
+            
+            const experiences = ['junior', 'mid', 'senior', 'architect'];
+            const questionTypes = ['scenario', 'technical', 'troubleshooting', 'design'];
+            
+            for (let i = 0; i < 10; i++) {
+                const randomTool = allTools[Math.floor(Math.random() * allTools.length)];
+                const randomExperience = experiences[Math.floor(Math.random() * experiences.length)];
+                const randomType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+                
+                const templates = smartQuestionTemplates[randomExperience][randomType] || smartQuestionTemplates[randomExperience]['scenario'];
+                const template = templates[Math.floor(Math.random() * templates.length)];
+                
+                const question = template.replace(/{tool}/g, randomTool);
+                const answer = generateAIAnswer(question, randomExperience, randomTool, 'general');
+                
+                questions.push({
+                    id: `random-q-${Date.now()}-${i}`,
+                    category: 'Random Selection',
+                    question: question,
+                    answer: answer,
+                    experience: randomExperience,
+                    tool: randomTool,
+                    questionType: randomType,
+                    timestamp: new Date().toISOString()
+                });
+            }
+            
+            aiGeneratedContent.questions = questions;
+            return questions;
+        }
+
+
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d0408bc3858007',t:'MTc1NzUyMTIyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
